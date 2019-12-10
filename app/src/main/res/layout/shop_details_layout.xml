@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
+    android:background="#FFFFFF"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -14,15 +15,25 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/dd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:gravity=" center_horizontal|center"
+            android:gravity="center_horizontal"
             android:text="Product Details"
             android:textSize="18sp"
             android:textColor="#000000"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
 
         <TextView
             android:id="@+id/category"

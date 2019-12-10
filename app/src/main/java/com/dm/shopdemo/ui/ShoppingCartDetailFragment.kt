@@ -21,8 +21,8 @@ class ShoppingCartDetailFragment : BaseFragment() {
 
     var shopCartDetailsModel: ShopCartDetailsModel? = null
     var title: TextView? = null
-    var category: TextView? = null
-    var price: TextView? = null
+    var categoryView: TextView? = null
+    var priceView: TextView? = null
   //  var toolbar: Toolbar? = null
     //var category = arrayOf("All","Women's Footwear", "Men's Footwear", "Women's Casualwear", "Men's Casualwear","Men's Formalwear","Women's Formalwear")
     //var productCategory: String? = "All"
@@ -40,14 +40,16 @@ class ShoppingCartDetailFragment : BaseFragment() {
     override fun initializeViews(view: View) {
         shopCartDetailsModel = arguments?.getParcelable(mTAG)
         title = view.findViewById(R.id.title)
+        categoryView = view.findViewById(R.id.category)
+        priceView = view.findViewById(R.id.price)
         title!!.text = "Product         :"+shopCartDetailsModel!!.details!!.name
-        category!!.text = "Category         :"+shopCartDetailsModel!!.details!!.category
-        price!!.text = "Price           : £"+ shopCartDetailsModel!!.details!!.price
+        categoryView!!.text = "Category         :"+shopCartDetailsModel!!.details!!.category
+        priceView!!.text = "Price           : £"+ shopCartDetailsModel!!.details!!.price
 
 
     }
 
-    override fun getLayout() = R.layout.shop_landing_inflate_layout
+    override fun getLayout() = R.layout.shop_details_layout
 
 
 }
