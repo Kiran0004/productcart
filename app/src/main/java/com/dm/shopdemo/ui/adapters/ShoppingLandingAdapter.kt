@@ -68,7 +68,7 @@ class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandin
     override fun addFragment(baseModel: BaseModel) {
 
         (context as MainActivity).supportFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainer, baseModel.viewInstance()!!)
+                .add(R.id.fragmentContainer, baseModel.viewInstance()!!)
                 .addToBackStack(baseModel.pType).commit()
 
     }
@@ -77,6 +77,9 @@ class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandin
 
     }
 
+    override fun showDialogBox(text: String, flag: Boolean) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
     class ShopHolder(view: View) : RecyclerView.ViewHolder(view) {
         var title = view.findViewById<TextView>(R.id.title)
         var category = view.findViewById<TextView>(R.id.category)

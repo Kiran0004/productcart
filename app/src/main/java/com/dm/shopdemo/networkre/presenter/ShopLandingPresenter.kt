@@ -3,6 +3,7 @@ package com.dm.shopdemo.networkre.presenter
 import android.widget.ProgressBar
 import com.dm.shopdemo.model.ShopData
 import com.dm.shopdemo.model.ShopLandingModel
+import com.dm.shopdemo.networkre.EndPoints
 import com.dm.shopdemo.networkre.NetworkCallBack
 import com.dm.shopdemo.networkre.NetworkRequest
 import com.dm.shopdemo.networkre.ResponseView
@@ -17,7 +18,14 @@ class ShopLandingPresenter(var rv: ResponseView, var nr: NetworkRequest) :
     override fun executeRequest(req: String, endpoint: String,progressBar: ProgressBar) {
         nr.makeRequest(req, endpoint, object : NetworkCallBack {
             override fun onSuccess(response: Any) {
-                rv.addFragment(convertData(response as String, endpoint))
+                if(endpoint.equals(EndPoints.PRODCUTS))
+                    rv.addFragment(convertData(response as String, endpoint))
+                else if(endpoint.equals(EndPoints.CART)){
+                    rv.showDialogBox(CommonUtils.CART_SUCCESS,false)
+                }else{
+                    rv.showDialogBox(CommonUtils.CART_REMOVE,true)
+                }
+
             }
 
             override fun onFailure(e: Exception) {

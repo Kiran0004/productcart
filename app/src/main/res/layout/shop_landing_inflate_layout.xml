@@ -57,8 +57,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Add to cart"
+            android:text="Details"
+            android:layout_marginLeft="3dp"
+            android:paddingLeft="25dp"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="25dp"
+            android:background="@drawable/button_color"
             android:textSize="13sp"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="10dp"
             android:textStyle="normal" />
     </LinearLayout>

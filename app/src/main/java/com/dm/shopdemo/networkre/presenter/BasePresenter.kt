@@ -1,7 +1,6 @@
 package com.dm.shopdemo.networkre.presenter
 
 import android.widget.ProgressBar
-import com.dm.shopdemo.networkre.NetworkCallBack
 import com.dm.shopdemo.networkre.NetworkRequest
 import com.dm.shopdemo.networkre.ResponseView
 

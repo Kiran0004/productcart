@@ -25,6 +25,10 @@ abstract class BaseFragment : Fragment() {
         initializeViews(view)
     }
 
+     fun onBackPressed(){
+
+    }
+
     abstract fun initializeViews(view: View)
 
     abstract fun getLayout(): Int

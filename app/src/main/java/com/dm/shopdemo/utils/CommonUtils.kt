@@ -6,8 +6,7 @@ class CommonUtils {
     companion object {
         var ADD="add";
         var REPLACE="replace"
-        fun showProgressDialog(progressDialog:ProgressDialog) {
-
-        }
+        var CART_SUCCESS  = "Your product successfully added to the cart"
+        var CART_REMOVE = "Your product successfully removed from the cart"
     }
 }

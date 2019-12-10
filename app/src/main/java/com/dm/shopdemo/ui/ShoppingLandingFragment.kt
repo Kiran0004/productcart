@@ -42,14 +42,14 @@ class ShoppingLandingFragment : BaseFragment() {
 
         toolbar =  view.findViewById(R.id.toolbar);
         (activity as MainActivity).getDelegate().setSupportActionBar(toolbar)
-        toolbar!!.setTitle("Filter Products By: ")
+        toolbar!!.setTitle("Filter By: ")
         val spinnerAdapter: SpinnerAdapter = ArrayAdapter(activity as MainActivity , R.layout.spinner_dropdown_item, R.id.text1, category)
         var navigationSpinner = Spinner((activity as MainActivity).getDelegate().supportActionBar!!.themedContext)
         navigationSpinner.adapter = spinnerAdapter
+        navigationSpinner!!.setBackgroundResource(R.drawable.selector_spinner)
         toolbar!!.addView(navigationSpinner,0)
         navigationSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                   // shopLandingModel = shopLandingModel.getListByCategories(productCategory)
                     productCategory = category[0]
                     setAdapter()
             }

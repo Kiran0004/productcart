@@ -1,9 +1,11 @@
 package com.dm.shopdemo
 
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.*
 
 import com.dm.shopdemo.model.BaseModel
@@ -13,8 +15,8 @@ import com.dm.shopdemo.networkre.ResponseView
 import com.dm.shopdemo.networkre.presenter.BasePresenter
 import com.dm.shopdemo.networkre.presenter.ShopLandingPresenter
 import com.dm.shopdemo.utils.CommonUtils
-
-
+import com.dm.shopdemo.ui.ShoppingCartDetailFragment
+import com.dm.shopdemo.ui.ShoppingLandingFragment
 
 
 class MainActivity : AppCompatActivity(), ResponseView {
@@ -65,6 +67,10 @@ class MainActivity : AppCompatActivity(), ResponseView {
 
     }
 
+    override fun showDialogBox(text: String, flag: Boolean) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
     private fun initialRequest() {
         progressBar!!.setVisibility(View.VISIBLE)
         basePresenter?.executeRequest("", EndPoints.PRODCUTS,progressBar!!)
@@ -76,8 +82,14 @@ class MainActivity : AppCompatActivity(), ResponseView {
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed()
-        finish()
+
+        val fragmentManager = supportFragmentManager
+        val currentFragment = fragmentManager.findFragmentById(R.id.fragmentContainer)
+        if(currentFragment is ShoppingLandingFragment){
+            finish()
+        }else if(currentFragment is ShoppingCartDetailFragment){
+            super.onBackPressed()
+        }
     }
 
 }
