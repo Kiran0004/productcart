@@ -14,6 +14,25 @@
         android:minHeight="?attr/actionBarSize" />
 
 
+    <Button
+        android:id="@+id/viewWishList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="View WishList"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="3dp"
+        android:paddingLeft="25dp"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:gravity="center"
+        android:paddingRight="25dp"
+        android:background="@drawable/button_color"
+        android:textSize="13sp"
+        android:textColor="#FFFFFF"
+        android:layout_marginBottom="10dp"
+        android:textStyle="normal" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"

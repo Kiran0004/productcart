@@ -23,14 +23,14 @@ class ShopLandingModel : BaseModel() {
         }
         return sortedList
     }
-
-    fun getProductById(id: Int): ShopData? {
+    fun getProductById(id: Int): MutableList<ShopData>? {
+        val sortedList = mutableListOf<ShopData>()
         list?.forEach { sd ->
             if (sd.productId == id) {
-                return sd
+                sortedList.add(sd)
             }
         }
-        return null
+        return sortedList
     }
 
 }

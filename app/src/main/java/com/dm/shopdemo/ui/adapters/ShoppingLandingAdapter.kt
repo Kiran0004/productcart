@@ -17,17 +17,23 @@ import com.dm.shopdemo.model.ShopCartDetailsModel
 import com.dm.shopdemo.model.ShopData
 import com.dm.shopdemo.model.ShopLandingModel
 import com.dm.shopdemo.networkre.ResponseView
+import com.dm.shopdemo.ui.ShoppingLandingFragment
 
-class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandingModel?,productCategory: String) :
+class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandingModel?,productCategory: String,flag:Boolean) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(),ResponseView {
     var list = mutableListOf<ShopData>()
     init {
+        if(flag){
+            list = shopLandingModel?.getProductById(3)!!
+        }else{
+            if (productCategory =="All") {
+                list = shopLandingModel?.list!!
+            }else {
+                if(!flag)
+                    list = shopLandingModel?.getListByCategories(productCategory)!!
+            }
+        }
 
-       if (productCategory =="All") {
-           list = shopLandingModel?.list!!
-       }else {
-           list = shopLandingModel?.getListByCategories(productCategory)!!
-       }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -67,6 +73,11 @@ class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandin
                 holder.wishList.visibility = View.VISIBLE
                 holder.wishList.setOnClickListener(View.OnClickListener {
                     Toast.makeText(context,"Wishlist Added successfully!!",Toast.LENGTH_SHORT).show()
+                    val fragmentManager = (context as MainActivity).supportFragmentManager
+                    val currentFragment = fragmentManager.findFragmentById(R.id.fragmentContainer)
+                    if(currentFragment is ShoppingLandingFragment){
+                        currentFragment.AddDataToWishList("2")
+                    }
                 })
             }
         }
