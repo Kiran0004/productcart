@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.dm.shopdemo.MainActivity
 import com.dm.shopdemo.R
@@ -52,6 +54,7 @@ class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandin
                 holder.outOfStock.text = context?.resources?.getString(R.string.outofstock)
                 holder.addtocartView.visibility=View.GONE
                 holder.outOfStock.visibility=View.VISIBLE
+                holder.wishList.visibility = View.GONE
             } else {
                 holder.outOfStock.text = ""
                 holder.addtocartView.visibility=View.VISIBLE
@@ -60,6 +63,10 @@ class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandin
                     var detailModel: ShopCartDetailsModel? = ShopCartDetailsModel()
                     detailModel!!.details = sd
                     addFragment(detailModel)
+                })
+                holder.wishList.visibility = View.VISIBLE
+                holder.wishList.setOnClickListener(View.OnClickListener {
+                    Toast.makeText(context,"Wishlist Added successfully!!",Toast.LENGTH_SHORT).show()
                 })
             }
         }
@@ -86,7 +93,7 @@ class ShoppingLandingAdapter(var context: Context?, shopLandingModel: ShopLandin
         var price = view.findViewById<TextView>(R.id.price)
         var outOfStock = view.findViewById<TextView>(R.id.outOfStock)
         var addtocartView = view.findViewById<Button>(R.id.addtocart)
-
+        var wishList  =view.findViewById<ImageView>(R.id.wishlist)
 
     }
 }

@@ -25,7 +25,6 @@ class ShoppingLandingFragment : BaseFragment() {
     var toolbar: Toolbar? = null
     var category = arrayOf("All","Women's Footwear", "Men's Footwear", "Women's Casualwear", "Men's Casualwear","Men's Formalwear","Women's Formalwear")
     var productCategory: String? = "All"
-
     companion object {
         fun newInstance(response: Parcelable): ShoppingLandingFragment {
             return ShoppingLandingFragment().apply {
