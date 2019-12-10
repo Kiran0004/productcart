@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ShopDemo</string>
+    <string name="outofstock">Out of stock</string>
+
+    <string-array name="themeList">
+        <item>white</item>
+        <item>sepia</item>
+        <item>black</item>
+        <item>pink</item>
+    </string-array>
+</resources>
