@@ -17,6 +17,7 @@ import com.dm.shopdemo.networkre.presenter.ShopLandingPresenter
 import com.dm.shopdemo.utils.CommonUtils
 import com.dm.shopdemo.ui.ShoppingCartDetailFragment
 import com.dm.shopdemo.ui.ShoppingLandingFragment
+import com.dm.shopdemo.ui.WishListDetailFragment
 
 
 class MainActivity : AppCompatActivity(), ResponseView {
@@ -86,8 +87,10 @@ class MainActivity : AppCompatActivity(), ResponseView {
         val fragmentManager = supportFragmentManager
         val currentFragment = fragmentManager.findFragmentById(R.id.fragmentContainer)
         if(currentFragment is ShoppingLandingFragment){
-            finish()
-        }else if(currentFragment is ShoppingCartDetailFragment){
+                finish()
+
+
+        }else if(currentFragment is ShoppingCartDetailFragment || currentFragment is WishListDetailFragment){
             super.onBackPressed()
         }
     }

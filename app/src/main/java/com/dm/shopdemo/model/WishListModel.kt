@@ -2,15 +2,16 @@ package com.dm.shopdemo.model
 
 import com.dm.shopdemo.ui.BaseFragment
 import com.dm.shopdemo.ui.ShoppingLandingFragment
+import com.dm.shopdemo.ui.WishListDetailFragment
 
-class ShopLandingModel : BaseModel() {
+class WishListModel : BaseModel() {
 
-    var list: MutableList<ShopData>? = null
+    var list: List<ShopData>? = null
     override fun viewInstance(): BaseFragment? {
-        return ShoppingLandingFragment.newInstance(this)
+        return WishListDetailFragment.newInstance(this)
     }
 
-    fun getListByCategories(catergoryName: String): MutableList<ShopData>? {
+    fun getListByCategories(catergoryName: String): List<ShopData>? {
         val sortedList = mutableListOf<ShopData>()
         list?.forEach { sd ->
             if (sd.category.equals(catergoryName)) {

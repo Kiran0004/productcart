@@ -84,6 +84,7 @@
             android:textColor="#FFFFFF"
             android:layout_marginBottom="10dp"
             android:textStyle="normal" />
+
     </LinearLayout>
 
     <LinearLayout

@@ -24,6 +24,7 @@ class ShoppingCartDetailFragment : BaseFragment(), ResponseView {
     var title: TextView? = null
     var categoryView: TextView? = null
     var priceView: TextView? = null
+    var stockView: TextView? = null
     var imageView: ImageView? = null
     var networkRequest: NetworkRequest? = null
     var progressBar: ProgressBar? = null
@@ -46,9 +47,11 @@ class ShoppingCartDetailFragment : BaseFragment(), ResponseView {
         imageView = view.findViewById(R.id.imageView)
         priceView = view.findViewById(R.id.price1)
         addToCart = view.findViewById(R.id.addtocart)
+        stockView = view.findViewById(R.id.stock)
         title!!.text = shopCartDetailsModel!!.details!!.name
         categoryView!!.text = shopCartDetailsModel!!.details!!.category
         priceView!!.text = " £"+ shopCartDetailsModel!!.details!!.price
+        stockView!!.text = "Available Stock :" + shopCartDetailsModel!!.details!!.stock
         if(shopCartDetailsModel!!.details!!.category!!.contains("Footwear"))
             imageView!!.setImageDrawable(resources.getDrawable(R.drawable.foo))
         else
@@ -102,7 +105,6 @@ class ShoppingCartDetailFragment : BaseFragment(), ResponseView {
             initialRequest(EndPoints.CART_DELETE)
 
         }
-        //  noBtn.setOnClickListener { dialog .dismiss() }
         dialog .show()
 
     }

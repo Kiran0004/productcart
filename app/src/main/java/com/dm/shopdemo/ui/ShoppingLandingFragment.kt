@@ -1,5 +1,7 @@
 package com.dm.shopdemo.ui
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
@@ -13,7 +15,14 @@ import com.dm.shopdemo.model.ShopLandingModel
 import com.dm.shopdemo.ui.adapters.ShoppingLandingAdapter
 
 import com.dm.shopdemo.MainActivity
+import com.dm.shopdemo.model.BaseModel
+import com.dm.shopdemo.model.ShopData
+import com.dm.shopdemo.model.WishListModel
 import com.dm.shopdemo.networkre.WishListInterface
+import com.dm.shopdemo.utils.CommonUtils
+import com.google.gson.Gson
+import org.json.JSONArray
+import java.util.*
 
 
 class ShoppingLandingFragment : BaseFragment(), WishListInterface {
@@ -49,10 +58,12 @@ class ShoppingLandingFragment : BaseFragment(), WishListInterface {
         navigationSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
                     productCategory = category[0]
+               // CommonUtils.wishListFlag = false
                     setAdapter(false)
             }
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     productCategory = category[position]
+              //  CommonUtils.wishListFlag = false
                     setAdapter(false)
 
             }
@@ -60,8 +71,26 @@ class ShoppingLandingFragment : BaseFragment(), WishListInterface {
         }
 
         wishlist!!.setOnClickListener(View.OnClickListener {
-            productCategory = category[0]
-            setAdapter(true)
+            var list = mutableListOf<ShopData>()
+
+            var mPrefs: SharedPreferences? = null
+            var sss: ShopLandingModel? = null
+            var proId: Int = 1
+
+            mPrefs = context!!.getSharedPreferences("MyObject", Context.MODE_PRIVATE)
+            sss = shopLandingModel
+           // if(flag){
+                val gson1 = Gson()
+                val json1 = mPrefs!!.getString("MyObject", "")
+
+                //  val type = object : TypeToken<MutableList<ShopData>>() {}.type
+
+
+
+                retrieveWishListData(json1!!)
+
+
+            //}
         })
 
         recyclerview?.layoutManager = LinearLayoutManager(context)
@@ -75,7 +104,46 @@ class ShoppingLandingFragment : BaseFragment(), WishListInterface {
     }
 
     private fun setAdapter(flag: Boolean) {
-        val adapter = ShoppingLandingAdapter(context, shopLandingModel,productCategory!!,flag)
+        val adapter = ShoppingLandingAdapter(context, shopLandingModel,productCategory!!)
         recyclerview?.adapter = adapter
+    }
+
+
+    fun retrieveWishListData(jsonString: String): MutableList<ShopData> {
+        val jsonarray = JSONArray(jsonString)
+        val list_val = mutableListOf<ShopData>()
+        val categoryList= LinkedList<String>()
+        for (count in 0 until jsonarray.length()) {
+            val obj = jsonarray.getJSONObject(count)
+            val productId = obj.getInt("productId")
+            val name = obj.getString("name")
+            val category = obj.getString("category")
+            val price = obj.getInt("price")
+            var oldPrice = -1
+            val stock = obj.getInt("stock")
+            val m = ShopData()
+            m.productId = productId
+            m.name = name
+            m.category = category
+            m.price = price
+            m.oldPrice = oldPrice
+            m.stock = stock
+            categoryList.add(category)
+            list_val.add(m)
+
+        }
+        var detailModel1: WishListModel? = WishListModel()
+        detailModel1!!.list = list_val!!
+        CommonUtils.wishListData = list_val!!
+        // detailModel = sd!!
+        replaceFragment(detailModel1)
+        return list_val
+    }
+     fun replaceFragment(baseModel: BaseModel) {
+
+        (context as MainActivity).supportFragmentManager.beginTransaction()
+            .replace(R.id.fragmentContainer, baseModel.viewInstance()!!)
+            .addToBackStack(baseModel.pType).commit()
+
     }
 }
